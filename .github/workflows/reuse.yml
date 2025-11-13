@@ -1,0 +1,19 @@
+# .github/workflows/deploy.yml
+on:
+  workflow_call:
+    inputs:
+      env:
+        required: true
+        type: string
+    secrets:
+      TOKEN:
+        required: true
+
+jobs:
+  deploy_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Show input and secret
+        run: |
+          echo "Environment: ${{ inputs.env }}"
+          echo "TOKEN length: ${#TOKEN}"  # 中身は表示しない
