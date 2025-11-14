@@ -1,0 +1,15 @@
+# .github/workflows/test2-deploy.yml
+name: Test2 Deploy Workflow
+
+on:
+  workflow_dispatch:  # 手動実行可能
+
+jobs:
+  test_deploy:
+    uses: ./.github/workflows/deploy.yml
+    with:
+      env: "staging"  # ここを自由に変更可能
+      var: ${{ vars.VAR_JSON }}
+    secrets:
+      TOKEN: ${{ secrets.DEPLOY_TOKEN_TEST }}
+      ENV_JSON: ${{ secrets.ENV_JSON }}
