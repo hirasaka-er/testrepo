@@ -25,6 +25,7 @@ jobs:
           ENV_VARS2=$(echo "$ENV_VARS" | jq .)
           VAR_JSON='${{ inputs.var }}'
           VAR_JSON2=$(echo "$VAR_JSON" | jq .)
+          ADD_JSON=$(echo "$ENV_VARS" | jq -s 'add' <(echo $VAR_JSON))
           echo "Environment: ${{ inputs.env }}"
           echo "TOKEN: ${{ secrets.TOKEN }}"
           echo "ENV_VARS: $ENV_VARS"
