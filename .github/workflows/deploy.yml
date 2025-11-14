@@ -16,4 +16,4 @@ jobs:
       - name: Show input and secret
         run: |
           echo "Environment: ${{ inputs.env }}"
-          echo "TOKEN length: ${#TOKEN}"  # 中身は表示しない
+          echo "TOKEN length: ${{ secrets.TOKEN }}"
