@@ -13,7 +13,7 @@ jobs:
       - id: example
         run: |
           echo "secret: ${{ secrets.DEPLOY_TOKEN_TEST }}"
-          TESTSECRET=$(echo "${{ secrets.ENV_JSON }}" | jq .)
+          TESTSECRET=$(echo ${{ secrets.ENV_JSON }} | jq .)
           echo "TESTSECRET: $TESTSECRET"
           echo "message=${{ secrets.DEPLOY_TOKEN_TEST }}" >> $GITHUB_OUTPUT
   test_deploy:
