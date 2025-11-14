@@ -5,6 +5,9 @@ on:
       env:
         required: true
         type: string
+      ver:
+        required: true
+        type: string
     secrets:
       TOKEN:
         required: true
