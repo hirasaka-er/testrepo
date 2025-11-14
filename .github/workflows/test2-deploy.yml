@@ -5,10 +5,17 @@ on:
   workflow_dispatch:  # 手動実行可能
 
 jobs:
+  get_secrets:
+    runs-on: ubuntu-latest
+    outputs:
+      message: ${{ steps.example.outputs.message }}
+    steps:
+      - id: example
+        run: echo "hello world!!" >> $GITHUB_OUTPUT
   test_deploy:
     uses: ./.github/workflows/deploy.yml
     with:
-      env: "staging"  # ここを自由に変更可能
+      env: ${{ needs.get_secrets.outputs.message }}
       var: ${{ vars.VAR_JSON }}
     secrets:
       TOKEN: ${{ secrets.DEPLOY_TOKEN_TEST }}
