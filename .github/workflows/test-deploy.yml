@@ -11,3 +11,4 @@ jobs:
       env: "staging"  # ここを自由に変更可能
     secrets:
       TOKEN: ${{ secrets.DEPLOY_TOKEN_TEST }}
+      ENV_JSON: ${{ secrets.ENV_JSON }}
