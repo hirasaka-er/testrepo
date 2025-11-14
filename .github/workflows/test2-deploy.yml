@@ -16,7 +16,14 @@ jobs:
           ENV_VARS='${{ secrets.ENV_JSON }}'
           ENV_VARS2=$(echo "$ENV_VARS" | jq .)
           echo "ENV_VARS2: $ENV_VARS2"
-          echo "vars=${{ secrets.ENV_JSON }}" >> $GITHUB_OUTPUT
+          cat <<EOF > env_vars.json
+          [
+            {"name": "name6", "value": "value6"},
+            {"name": "name7", "value": "value7"}            
+          ]
+          EOF
+          
+          echo "vars=$(cat env_vars.json | jq -c .)" >> $GITHUB_OUTPUT
   test_deploy:
     needs: get_secrets
     uses: ./.github/workflows/deploy.yml
