@@ -8,7 +8,7 @@ jobs:
   get_secrets:
     runs-on: ubuntu-latest
     outputs:
-      message: ${{ steps.example.outputs.message }}
+      vars: ${{ steps.get_secrets.outputs.vars }}
     steps:
       - id: example
         run: |
@@ -21,7 +21,7 @@ jobs:
     needs: get_secrets
     uses: ./.github/workflows/deploy.yml
     with:
-      env: ${{ needs.get_secrets.outputs.message }}
+      env: ${{ needs.get_secrets.outputs.vars }}
       var: ${{ vars.VAR_JSON }}
     secrets:
       TOKEN: ${{ secrets.DEPLOY_TOKEN_TEST }}
