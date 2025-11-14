@@ -8,6 +8,8 @@ on:
     secrets:
       TOKEN:
         required: true
+      ENV_JSON:
+        required: false
 
 jobs:
   deploy_job:
@@ -15,5 +17,8 @@ jobs:
     steps:
       - name: Show input and secret
         run: |
+          ENV_VARS_ARG=""
+          ENV_VARS='${{ secrets.ENV_JSON }}'
           echo "Environment: ${{ inputs.env }}"
-          echo "TOKEN length: ${{ secrets.TOKEN }}"
+          echo "TOKEN: ${{ secrets.TOKEN }}"
+          echo "ENV_VARS: $ENV_VARS"
