@@ -11,7 +11,9 @@ jobs:
       message: ${{ steps.example.outputs.message }}
     steps:
       - id: example
-        run: echo "message=${{ secrets.DEPLOY_TOKEN_TEST }}" >> $GITHUB_OUTPUT
+        run: |
+          echo "secret: ${{ secrets.DEPLOY_TOKEN_TEST }}"
+          echo "message=${{ secrets.DEPLOY_TOKEN_TEST }}" >> $GITHUB_OUTPUT
   test_deploy:
     needs: get_secrets
     uses: ./.github/workflows/deploy.yml
