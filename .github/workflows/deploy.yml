@@ -5,7 +5,7 @@ on:
       env:
         required: true
         type: string
-      ver:
+      var:
         required: true
         type: string
     secrets:
@@ -25,3 +25,4 @@ jobs:
           echo "Environment: ${{ inputs.env }}"
           echo "TOKEN: ${{ secrets.TOKEN }}"
           echo "ENV_VARS: $ENV_VARS"
+          echo "VAR: $var"
