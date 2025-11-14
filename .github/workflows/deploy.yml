@@ -28,5 +28,6 @@ jobs:
           echo "Environment: ${{ inputs.env }}"
           echo "TOKEN: ${{ secrets.TOKEN }}"
           echo "ENV_VARS: $ENV_VARS"
+          echo "ENV_VARS2: $ENV_VARS2"
           echo "VAR_JSON: $VAR_JSON"
           echo "VAR_JSON2: $VAR_JSON2"
