@@ -13,6 +13,7 @@ jobs:
       - id: example
         run: echo "message=hello world!!" >> $GITHUB_OUTPUT
   test_deploy:
+    needs: get_secrets
     uses: ./.github/workflows/deploy.yml
     with:
       env: ${{ needs.get_secrets.outputs.message }}
