@@ -11,7 +11,7 @@ jobs:
       message: ${{ steps.example.outputs.message }}
     steps:
       - id: example
-        run: echo "hello world!!" >> $GITHUB_OUTPUT
+        run: echo "message=hello world!!" >> $GITHUB_OUTPUT
   test_deploy:
     uses: ./.github/workflows/deploy.yml
     with:
