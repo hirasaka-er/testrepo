@@ -4,11 +4,14 @@ name: Test Workflow
 on:
   workflow_dispatch:  # 手動実行可能
 
+env:
+  DIR: '${{ github.workspace }}'
+
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
       - id: test1
         run: |
-          result=$(pwd .)
+          result=$(pwd ${{ env.DIR }})
           echo "result: $result"
