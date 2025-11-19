@@ -1,0 +1,16 @@
+# .github/workflows/test.yml
+name: Test Workflow
+
+on:
+  workflow_dispatch:  # 手動実行可能
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - id: test1
+        run: |
+          echo $(ls .)
+      - id: test2
+        run: |
+          echo $(ls ${{ github.workspace }})
