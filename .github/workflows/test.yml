@@ -8,9 +8,12 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - id: test1
+      - id: test .
         run: |
-          ls .
-      - id: test2
+          result=$(ls .)
+          echo "result: $result"
+      - id: test github.workspace 
         run: |
           ls ${{ github.workspace }}
+          result=$(ls github.workspace)
+          echo "result: $result"
