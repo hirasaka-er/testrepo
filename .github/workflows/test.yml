@@ -10,10 +10,5 @@ jobs:
     steps:
       - id: test1
         run: |
-          result=$(ls .)
-          echo "result: $result"
-      - id: test2
-        run: |
-          ls ${{ github.workspace }}
-          result=$(ls github.workspace)
+          result=$(pwd .)
           echo "result: $result"
