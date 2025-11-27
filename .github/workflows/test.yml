@@ -3,6 +3,11 @@ name: Test Workflow
 
 on:
   workflow_dispatch:  # 手動実行可能
+    inputs:
+      COMMIT_ID:
+        required: false
+        type: string
+        default: 'publish-artifacts-in-last-commit'
 
 env:
   DIR: '${{ github.workspace }}'
@@ -16,5 +21,5 @@ jobs:
         run: |
           echo "ENV_TEST1: $env:ENV_TEST1"          
         env:
-          ENV_TEST1: 'env_test1'
+          ENV_TEST1: ${{ inputs.COMMIT_ID == 'publish-artifacts-in-last-commit' && github.sha || '' }}
           
