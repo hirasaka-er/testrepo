@@ -14,8 +14,6 @@ jobs:
       - name: test1
         shell: pwsh
         run: |
-          result=$(pwd ${{ env.DIR }})
-          echo "result: $result"
           echo "ENV_TEST1: $env:ENV_TEST1"          
         env:
           ENV_TEST1: 'env_test1'
