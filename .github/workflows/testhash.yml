@@ -1,1 +1,27 @@
+# .github/workflows/testhash.yml
+on:
+  workflow_call:
+    inputs:
+      COMMIT_ID:
+        required: false
+        type: string
+        default: 'publish-artifacts-in-last-commit'
 
+jobs:
+  deploy_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          
+      - name: test1
+        shell: pwsh
+        run: |
+          echo "ENV_TEST1: $env:ENV_TEST1"          
+          echo "ENV_TEST2: $env:ENV_TEST2"          
+          echo "github.sha: ${{ github.sha }}"          
+        env:
+          ENV_TEST1: ${{ inputs.COMMIT_ID }}
+          ENV_TEST2: ${{ inputs.COMMIT_ID == 'publish-artifacts-in-last-commit' && github.sha || '' }}
