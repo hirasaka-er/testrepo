@@ -1,0 +1,17 @@
+name: Test testhash Workflow
+
+on:
+  workflow_dispatch:  # 手動実行可能
+    inputs:
+      COMMIT_ID:
+        required: false
+        type: choice
+        default: 'publish-artifacts-in-last-commit'
+        options:
+          - publish-artifacts-in-last-commit
+          - publish-all-artifacts-in-repo
+jobs:
+  test_deploy:
+    uses: ./.github/workflows/testhash.yml
+    with:
+      COMMIT_ID: ${{ inputs.COMMIT_ID || 'publish-artifacts-in-last-commit' }}
