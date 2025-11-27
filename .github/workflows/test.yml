@@ -6,8 +6,11 @@ on:
     inputs:
       COMMIT_ID:
         required: false
-        type: string
+        type: choice
         default: 'publish-artifacts-in-last-commit'
+        options:
+          - publish-artifacts-in-last-commit
+          - publish-all-artifacts-in-repo
 
 env:
   DIR: '${{ github.workspace }}'
@@ -20,6 +23,8 @@ jobs:
         shell: pwsh
         run: |
           echo "ENV_TEST1: $env:ENV_TEST1"          
+          echo "ENV_TEST2: $env:ENV_TEST2"          
         env:
-          ENV_TEST1: ${{ inputs.COMMIT_ID == 'publish-artifacts-in-last-commit' && github.sha || '' }}
+          ENV_TEST1: ${{ inputs.COMMIT_ID || 'publish-artifacts-in-last-commit' }}
+          ENV_TEST2: ${{ inputs.COMMIT_ID == 'publish-artifacts-in-last-commit' && github.sha || '' }}
           
