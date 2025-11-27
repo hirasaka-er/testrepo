@@ -2,6 +2,9 @@
 name: Test Workflow
 
 on:
+  push:
+    branches:
+      - main
   workflow_dispatch:  # 手動実行可能
     inputs:
       COMMIT_ID:
