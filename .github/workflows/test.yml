@@ -37,3 +37,12 @@ jobs:
           ENV_TEST1: ${{ inputs.COMMIT_ID || 'publish-artifacts-in-last-commit' }}
           ENV_TEST2: ${{ inputs.COMMIT_ID == 'publish-artifacts-in-last-commit' && github.sha || '' }}
           
+      - name: test2
+        shell: bash
+        run: |
+          if echo "test if bash!!"; then
+            echo "success!!"
+          else
+            echo "failed!!!!"
+            exit 0
+          fi
