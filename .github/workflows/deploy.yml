@@ -11,6 +11,10 @@ on:
       ENVIRONMENT:
         required: true
         type: string
+      PATH:
+        required: false
+        type: string
+        default: ''
     secrets:
       TOKEN:
         required: true
@@ -24,7 +28,7 @@ jobs:
       name: ${{ inputs.ENVIRONMENT}}
     steps:
       - name: TEST IF
-        if: inputs.var != ''
+        if: inputs.PATH != ''
         run: |
           echo "inputs.var is not empty!! var: ${{ inputs.var}}"
       - name: Show input and secret
