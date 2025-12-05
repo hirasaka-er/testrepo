@@ -14,7 +14,7 @@ jobs:
     uses: ./.github/workflows/deploy.yml
     with:
       env: "staging"  # ここを自由に変更可能
-      var: ${{ vars.VAR_JSON }}
+      var: "" # ${{ vars.VAR_JSON }}
       ENVIRONMENT: "dev3"
     secrets:
       TOKEN: ${{ secrets.DEPLOY_TOKEN_TEST }}
