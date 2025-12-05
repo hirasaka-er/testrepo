@@ -8,6 +8,9 @@ on:
       var:
         required: true
         type: string
+      ENVIRONMENT:
+        required: true
+        type: string
     secrets:
       TOKEN:
         required: true
@@ -17,6 +20,8 @@ on:
 jobs:
   deploy_job:
     runs-on: ubuntu-latest
+    environment:
+      name: ${{ inputs.ENVIRONMENT}}
     steps:
       - name: Show input and secret
         run: |
