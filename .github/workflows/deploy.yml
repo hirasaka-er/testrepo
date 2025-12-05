@@ -23,6 +23,10 @@ jobs:
     environment:
       name: ${{ inputs.ENVIRONMENT}}
     steps:
+      - name: TEST IF
+        if: inputs.var != ''
+        run: |
+          echo "inputs.var is not empty!! var: ${{ inputs.var}}"
       - name: Show input and secret
         run: |
           ENV_VARS_ARG=""
