@@ -1,0 +1,35 @@
+# .github/workflows/test.yml a
+name: PR Create Workflow
+
+on:
+  # push:
+  #   branches:
+  #     - main
+  workflow_dispatch:  # 手動実行可能
+    inputs:
+      COMMIT_ID:
+        required: false
+        type: choice
+        default: 'publish-artifacts-in-last-commit'
+        options:
+          - publish-artifacts-in-last-commit
+          - publish-all-artifacts-in-repo
+
+env:
+  DIR: '${{ github.workspace }}'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: test1
+        shell: bash
+        run: |
+          echo "start pr create"          
+          gh pr create \
+            --base "main" \
+            --head "feature/prtest" \
+            --title "test desu." \
+            --body "body no test dayo."
+
+          echo "complete!"         
