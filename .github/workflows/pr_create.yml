@@ -24,6 +24,8 @@ jobs:
     steps:
       - name: test1
         shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           echo "start pr create"          
           gh pr create \
