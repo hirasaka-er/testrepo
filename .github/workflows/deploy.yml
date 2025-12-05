@@ -38,3 +38,7 @@ jobs:
           echo "VAR_JSON: $VAR_JSON"
           echo "VAR_JSON2: $VAR_JSON2"
           echo "ADD_JSON: $ADD_JSON"
+      - name: Show input and secret
+        run: |
+          ENVIRONMENT='${{ inputs.ENVIRONMENT }}'
+          echo "ENV_VARS: $ENVIRONMENT"
