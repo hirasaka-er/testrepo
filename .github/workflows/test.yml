@@ -17,6 +17,7 @@ on:
 
 env:
   DIR: '${{ github.workspace }}'
+  TEST_ENV: 'test env desu.'
 
 jobs:
   test:
@@ -46,3 +47,9 @@ jobs:
             echo "failed!!!!"
             exit 0
           fi
+
+      - name: test3
+        shell: bash
+        run: |
+          echo "ENV DIR: ${{ env.DIR }}"
+          echo "ENV TEST_ENV: ${{ env.TEST_ENV }}"
