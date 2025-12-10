@@ -53,3 +53,22 @@ jobs:
         run: |
           echo "ENV DIR: ${{ env.DIR }}"
           echo "ENV TEST_ENV: ${{ env.TEST_ENV }}"
+  test2:
+    runs-on: ubuntu-latest
+    outputs:
+      env-vars: ${{ steps.set_env.output.env-vars }}
+    steps:
+      - name: set_env
+        run: |
+          echo "env-vars=$(jq -c -n '[
+            {"name": "DIR", "value": "${{ env.DIR }}"},
+            {"name": "TEST_ENV", "value": "${{ env.TEST_ENV }}"}
+          ]')" >> $GITHUB_OUTPUT
+
+  test3:
+    needs: test2
+    runs-on: ubuntu-latest
+    steps:
+      - name: print
+        run: |
+          echo "needs env: ${{ needs.prepare.outputs.env-vars }}"
