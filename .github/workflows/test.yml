@@ -1,5 +1,6 @@
 # .github/workflows/test.yml a
 name: Test Workflow Namge Change
+run-name:  Test Workflow Namge Change_{{ inputs.COMMIT_ID }}
 
 on:
   # push:
