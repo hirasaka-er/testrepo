@@ -1,6 +1,6 @@
 # .github/workflows/test.yml a
 name: Test Workflow Namge Change
-run-name:  Test Workflow Namge Change_${{ inputs.COMMIT_ID }}
+run-name:  Test Workflow Namge Change_[${{ inputs.ENV }}]
 
 on:
   # push:
@@ -15,6 +15,10 @@ on:
         options:
           - publish-artifacts-in-last-commit
           - publish-all-artifacts-in-repo
+      ENV:
+        required: false
+        type: string
+        default: 'A1'
 
 env:
   DIR: '${{ github.workspace }}'
@@ -34,7 +38,8 @@ jobs:
         run: |
           echo "ENV_TEST1: $env:ENV_TEST1"          
           echo "ENV_TEST2: $env:ENV_TEST2"          
-          echo "github.sha: ${{ github.sha }}"          
+          echo "github.sha: ${{ github.sha }}"   
+          sleep 120
         env:
           ENV_TEST1: ${{ inputs.COMMIT_ID || 'publish-artifacts-in-last-commit' }}
           ENV_TEST2: ${{ inputs.COMMIT_ID == 'publish-artifacts-in-last-commit' && github.sha || '' }}
